@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const PDFDocument = require('pdfkit');
 const cors = require('cors');
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -173,6 +172,21 @@ app.post('/apply', async (req, res) => {
   }
 });
 
+// HR login route
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Hardcoded credentials
+  const HR_USERNAME = "hr";
+  const HR_PASSWORD = "smartcity2026";
+
+  if (username === HR_USERNAME && password === HR_PASSWORD) {
+    res.status(200).json({ message: "Login successful" });
+  } else {
+    res.status(401).json({ error: "Invalid credentials" });
+  }
+});
+
 // HR routes
 app.get('/applications', async (req, res) => {
   const apps = await Application.find().sort({ submittedAt: -1 });
@@ -188,4 +202,6 @@ app.get('/applications/:id/pdf', async (req, res) => {
   res.send(pdfBuffer);
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+
