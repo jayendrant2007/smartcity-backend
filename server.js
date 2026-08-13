@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const PDFDocument = require('pdfkit');
 const cors = require('cors');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
 
 app.use(bodyParser.json());
 app.use(cors());
