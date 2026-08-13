@@ -50,7 +50,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'services@smartcitytechnologies.com.sg',
-    pass: 'YOUR_EMAIL_PASSWORD'
+    pass: 'sCtpl5009'
   }
 });
 
